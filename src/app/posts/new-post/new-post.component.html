@@ -1,1 +1,61 @@
-<p>new-post works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h3 class="text-theme-primary">Add New Posts</h3>
+            <p class="mb-5">You can add new post here</p>
+        </div>
+    </div>
+
+    <form>
+        <div class="row">
+            <div class="col-md-7">
+                <div class="card shadow-effect">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="labl" >Title:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="labl" >Permlink:</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="labl" >Excerpt:</label>
+                            <textarea class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 shadow-effect">
+                <div class="form-group">
+                    <label class="labl" >Please Select A Post Category </label>
+                    <select class="form-control">
+                        <option value="" disabled>Please select a Category</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="labl">Post Image:</label>
+                    <input type="file" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-5">
+            <div class="col-md-12">
+                <div class="card shadow-effect">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="labl">Content:</label>
+                            <textarea class="form-control" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center my-5">
+                <button class="btn btn-info bg-theme" ><i class="fa-regular fa-floppy-disk me-1"></i> Save Post</button>
+                <button class="btn btn-warning ms-3" routerLink="/posts" ><i class="fa-duotone fa-person-to-door fa-flip-horizontal me-1"></i> Back To Post</button>
+            </div>
+        </div>
+    </form>
+
+</div>
