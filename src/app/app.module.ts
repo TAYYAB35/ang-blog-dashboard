@@ -13,6 +13,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { environment } from 'src/environments/environment.development';
 import { CategoryComponent } from './category/category.component';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { AngularEditorModule } from '@kolkov/angular-editor';
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -34,13 +36,15 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     CommonModule,
     FormsModule,
     BrowserModule,
+    HttpClientModule,
+    AngularEditorModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
-AppRoutingModule,
-  AngularFireModule.initializeApp(environment.firebaseConfig),
-  AngularFirestoreModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule
   ],
-providers: [],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

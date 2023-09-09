@@ -13,15 +13,16 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="labl" >Title:</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" (keyup)="ontitleChange($event)" >
                         </div>
                         <div class="form-group">
                             <label class="labl" >Permlink:</label>
-                            <input type="text" class="form-control">
+                            <input type="text" name="permaLink" class="form-control" [(ngModel)]='permaLink' disabled >
                         </div>
                         <div class="form-group">
                             <label class="labl" >Excerpt:</label>
-                            <textarea class="form-control" cols="30" rows="10"></textarea>
+                            <angular-editor [placeholder]="'Enter text here...'"></angular-editor>
+
                         </div>
                     </div>
                 </div>
@@ -30,12 +31,16 @@
                 <div class="form-group">
                     <label class="labl" >Please Select A Post Category </label>
                     <select class="form-control">
-                        <option value="" disabled>Please select a Category</option>
+                        <option value="" selected disabled>Please select a Category</option>
+                        <option value="" *ngFor="let Category of categoryArray" >{{Category.data.category}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="labl">Post Image:</label>
-                    <input type="file" class="form-control">
+                    <div class="d-flex justify-content-center" >
+                        <img [src]="imgSrc" class="form-control img-fluid img-preview">
+                    </div>
+                    <input type="file" class="form-control" accept="Image/*" (change)="showPreview($event)">
                 </div>
             </div>
         </div>
