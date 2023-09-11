@@ -6,22 +6,46 @@
         </div>
     </div>
 
-    <form>
+    <form [formGroup]="postForm">
         <div class="row">
             <div class="col-md-7">
                 <div class="card shadow-effect">
                     <div class="card-body">
                         <div class="form-group">
-                            <label class="labl" >Title:</label>
-                            <input type="text" class="form-control" (keyup)="ontitleChange($event)" >
+                            <label class="labl">Title:</label>
+                            <input type="text" class="form-control" (keyup)="ontitleChange($event)"
+                                formControlName="title"
+                                [ngClass]="{'is-invalid':  fc['title']?.['touched'] && fc['title']?.['invalid']}">
+
+                            <div *ngIf="fc['title'].errors?.['required']">
+                                <div class="alert alert-danger"
+                                    *ngIf="fc['title']?.['touched'] && fc['title']?.['invalid']">Title Is Required Field</div>
+                            </div>
+                            <div *ngIf="fc['title'].errors?.['minlength']">
+                                <div class="alert alert-danger"
+                                    *ngIf="fc['title']?.['touched'] && fc['title']?.['invalid']">Title must be atleat
+                                    10 character long</div>
+                            </div>
                         </div>
+
+
                         <div class="form-group">
-                            <label class="labl" >Permlink:</label>
-                            <input type="text" name="permaLink" class="form-control" [(ngModel)]='permaLink' disabled >
+                            <label class="labl">Permlink:</label>
+                            <input type="text" [disabled]="disabled" class="form-control" [(ngModel)]="permaLink"
+                                formControlName="permalink"
+                                [ngClass]="{'is-invalid': fc['permlink']?.['touched'] && fc['permlink']?.['invalid']}">
+                            <div *ngIf="fc['permlink'].errors?.['required']">
+                                <div class="alert alert-danger"
+                                    *ngIf="fc['permlink']?.['touched'] && fc['permlink']?.['invalid']">Title Is Required
+                                    Field</div>
+                            </div>
+
                         </div>
+
                         <div class="form-group">
-                            <label class="labl" >Excerpt:</label>
-                            <angular-editor [placeholder]="'Enter text here...'"></angular-editor>
+                            <label class="labl">Excerpt:</label>
+                            <textarea class="form-control" placeholder="Add SomeThing" cols="30" rows="10"
+                                formControlName="excerpt"></textarea>
 
                         </div>
                     </div>
@@ -29,18 +53,19 @@
             </div>
             <div class="col-md-5 shadow-effect">
                 <div class="form-group">
-                    <label class="labl" >Please Select A Post Category </label>
-                    <select class="form-control">
+                    <label class="labl">Please Select A Post Category </label>
+                    <select class="form-control" formControlName="category">
                         <option value="" selected disabled>Please select a Category</option>
-                        <option value="" *ngFor="let Category of categoryArray" >{{Category.data.category}}</option>
+                        <option value="" *ngFor="let Category of categoryArray">{{Category.data.category}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="labl">Post Image:</label>
-                    <div class="d-flex justify-content-center" >
+                    <div class="d-flex justify-content-center">
                         <img [src]="imgSrc" class="form-control img-fluid img-preview">
                     </div>
-                    <input type="file" class="form-control" accept="Image/*" (change)="showPreview($event)">
+                    <input type="file" class="form-control" accept="Image/*" (change)="showPreview($event)"
+                        formControlName="postImg">
                 </div>
             </div>
         </div>
@@ -51,14 +76,16 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label class="labl">Content:</label>
-                            <textarea class="form-control" cols="30" rows="10"></textarea>
+                            <angular-editor [placeholder]="'Enter text here...'" class="form-control"
+                                formControlName="content"></angular-editor>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 text-center my-5">
-                <button class="btn btn-info bg-theme" ><i class="fa-regular fa-floppy-disk me-1"></i> Save Post</button>
-                <button class="btn btn-warning ms-3" routerLink="/posts" ><i class="fa-duotone fa-person-to-door fa-flip-horizontal me-1"></i> Back To Post</button>
+                <button class="btn btn-info bg-theme"><i class="fa-regular fa-floppy-disk me-1"></i> Save Post</button>
+                <button class="btn btn-warning ms-3" routerLink="/posts"><i
+                        class="fa-duotone fa-person-to-door fa-flip-horizontal me-1"></i> Back To Post</button>
             </div>
         </div>
     </form>
