@@ -2,10 +2,18 @@
     font-weight: 600;
     font-size: 16px;
     margin: 4px 0;
+    display: flex;
 }
 
 .img-preview{
     height: 350px;
     width: auto;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+}
+.link-input{
+    cursor: not-allowed;
+    background-color: lightgray !important;
+}
+.cursor{
+    cursor: not-allowed !important;
 }

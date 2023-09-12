@@ -23,6 +23,7 @@ export class CategoryComponent implements OnInit {
   }
 
   submittForm(formData) {
+    console.log(formData);
     let categoryData:CategoryInterface = {
       category: formData.value.category,
     }
