@@ -8,9 +8,51 @@
                     </h3>
                     <p>From here you can manage your posts</p>
 
-                    <button class="btn bg-theme btn-info  text-white" routerLink="/posts/new" > <i class="fa-regular fa-plus me-1"></i> Add New Post</button>
-                    <button class="btn btn-warning ms-2 " routerLink="/" > <i class="fa-duotone fa-person-to-door fa-flip-horizontal me-1"></i>Back To Dashboard</button>
+                    <button class="btn bg-theme btn-info  text-white" routerLink="/posts/new"> <i
+                            class="fa-regular fa-plus me-1"></i> Add New Post</button>
+                    <button class="btn btn-warning ms-2 " routerLink="/"> <i
+                            class="fa-duotone fa-person-to-door fa-flip-horizontal me-1"></i>Back To Dashboard</button>
 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-md-12">
+            <div class="card shadow-effect">
+                <div class="card-body">
+                    <table class="table row-border hover">
+                        <thead>
+                            <tr>
+
+                                <th>No</th>
+                                <th>Post Image</th>
+                                <th>Title</th>
+                                <th>Excerpt</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let post of postArray;let i = index">
+                                <td width="10">{{i+1}}</td>
+                                <td width="100"><img src="{{post.data.postImgUrl}}" class="img img-fluid rounded"
+                                        style="width: 70px;" alt=""></td>
+                                <td width="200">{{post.data.title}}</td>
+                                <td width="200">{{post.data.excerpt}}</td>
+                                <td>{{post.data.category.category}}</td>
+                                <td>{{post.data.createdAt.toMillis() | date}}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-warning text-white" routerLink="/posts/new" [queryParams]="{id: post.id}"
+                                        ><i
+                                            class="fa-sharp fa-regular fa-pen-to-square me-1" ></i>Edit</button>
+                                    <button class="btn btn-sm btn-danger ms-2 text-white" >
+                                        <i class="fa-sharp fa-regular fa-trash me-1"></i> Delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -20,6 +20,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { NewPostComponent } from './posts/new-post/new-post.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    AngularFireStorageModule,
     AngularEditorModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CategoryService } from 'src/app/Service/category.service';
+import { PostService } from 'src/app/Service/post.service';
 import { Post } from 'src/app/models/post';
 
 @Component({
@@ -15,7 +16,7 @@ export class NewPostComponent implements OnInit {
   selectedImg : any ;
   categoryArray : Array<any> = [];
   postForm : FormGroup;
-  constructor(private categoryService:CategoryService,private fb: FormBuilder){
+  constructor(private categoryService:CategoryService,private fb: FormBuilder,private postService:PostService){
     this.postForm = this.fb.group({
       title : ['',[Validators.required, Validators.minLength(10)]],
       permalink : ['',Validators.required ] ,
@@ -73,7 +74,10 @@ export class NewPostComponent implements OnInit {
       createdAt : new Date(),
     }
 
-    console.log(postData)
+    console.log(postData);
+    this.postService.uploadImg(this.selectedImg ,postData);
+    this.postForm.reset();
+    this.imgSrc = './assets/3688477_image_placeholder_scene_gallery_hills_icon.png'
 
   }
 
