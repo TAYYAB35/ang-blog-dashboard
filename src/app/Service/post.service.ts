@@ -18,7 +18,7 @@ export class PostService {
     ) { }
 
 
-  uploadImg(selectedImg, postData) {
+  uploadImg(selectedImg, postData,formStatus ,id) {
     // Generate a unique file path for the image using the current timestamp
     const filePath = `postIMG/${Date.now()}`;
 
@@ -29,7 +29,14 @@ export class PostService {
       // Get the download URL of the uploaded image
       this.storage.ref(filePath).getDownloadURL().subscribe(URL => {
         postData.postImgUrl = URL;
-        this.saveData(postData);
+
+        if(formStatus === "Edit"){
+          this.updateData(id , postData);
+        }else {
+          this.saveData(postData);
+        }
+
+
       })
     })
   }
@@ -44,16 +51,30 @@ export class PostService {
   loadData() {
     // Use the map operator to transform the data and return the observable
     return this.afs.collection('posts').snapshotChanges().pipe(
+      // snapshotChanges()  in order to load list of compoenets and can fetch the document with doucment id
       map(actions => {
         return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
+          const data = a.payload.doc.data(); //document
+          const id = a.payload.doc.id; // doucment id
           return { data, id };
         });
       })
-    );
+      );
+    }
+    
+    onloadData(id){
+      return  this.afs.doc(`posts/${id}`).valueChanges();
+      // snapshotChanges()  in order to load one compoenets and will not fetch id but only the data ,, we alreday now the id so we are using this value change method
   }
 
+
+
+  updateData(id ,data){
+    this.afs.doc(`posts/${id}`).update(data).then(val => {
+      this.toastr.success('Data Updated Successfully' );
+      this.router.navigate(['/posts']);
+    })
+  }
 
 }
 

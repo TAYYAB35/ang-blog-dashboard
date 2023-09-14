@@ -38,7 +38,7 @@
                             <tr *ngFor="let post of postArray;let i = index">
                                 <td width="10">{{i+1}}</td>
                                 <td width="100"><img src="{{post.data.postImgUrl}}" class="img img-fluid rounded"
-                                        style="width: 70px;" alt=""></td>
+                                        style="max-width: 100px;min-width: 100px;min-height: 80px;" alt=""></td>
                                 <td width="200">{{post.data.title}}</td>
                                 <td width="200">{{post.data.excerpt}}</td>
                                 <td>{{post.data.category.category}}</td>
