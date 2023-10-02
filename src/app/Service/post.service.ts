@@ -76,5 +76,24 @@ export class PostService {
     })
   }
 
+
+  deleteImg(postImgPath,id){
+    this.storage.storage.refFromURL(postImgPath).delete().then(() => {
+      this.deleteData(id);
+    });
+  }
+
+  deleteData(id:string) {
+    this.afs.doc(`posts/${id}`).delete().then(() => {
+      this.toastr.warning('Data deleted successfully');
+    });
+  }
+
+  markedFeatured(id ,featuredData){
+    this.afs.doc(`posts/${id}`).update(featuredData).then(() => {
+      this.toastr.info('Featured Status updated successfully');
+    });
+  }
+
 }
 

@@ -16,4 +16,18 @@ postArray: Array<any>;
     });
 
   }
+
+  onDelete(postImgPath: any ,id: any){
+    this.postService.deleteImg(postImgPath,id);
+  }
+
+  onFeatured(id ,value){
+    const featuredData = {
+      isFeatured : value
+    }
+
+
+    this.postService.markedFeatured(id,featuredData)
+  }
+
 }

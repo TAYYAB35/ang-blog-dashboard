@@ -30,20 +30,34 @@ export class NewPostComponent implements OnInit {
 
       this.router.queryParams.subscribe(val => {
         this.docId = val['id'];
-        this.postService.onloadData(val['id']).subscribe(data => {
-          this.data = data;
-          this.postForm = this.fb.group({
-            title: [this.data.title, [Validators.required, Validators.minLength(10)]],
-            permalink: [this.data.permalink, Validators.required],
-            excerpt: [this.data.excerpt, [Validators.required, Validators.minLength(30)]],
-            category: [`${this.data.category.categoryId}-${this.data.category.category}`, Validators.required],
-            postImg: ['', Validators.required],
-            content: [this.data.content, Validators.required],
+
+        if(this.docId){
+          this.postService.onloadData(val['id']).subscribe(data => {
+            this.data = data;
+            this.postForm = this.fb.group({
+              title: [this.data.title, [Validators.required, Validators.minLength(10)]],
+              permalink: [this.data.permalink, Validators.required],
+              excerpt: [this.data.excerpt, [Validators.required, Validators.minLength(30)]],
+              category: [`${this.data.category.categoryId}-${this.data.category.category}`, Validators.required],
+              postImg: ['', Validators.required],
+              content: [this.data.content, Validators.required],
+            });
+            this.imgSrc = this.data.postImgUrl;
+            this.formStatus = 'Edit'
           });
-          this.imgSrc = this.data.postImgUrl;
-          this.formStatus = 'Edit'
-        });
-        console.log(val['id']);
+          console.log(val['id']);
+        }
+        else {
+          this.postForm = this.fb.group({
+            title: ['', [Validators.required, Validators.minLength(10)]],
+            permalink: ['', Validators.required],
+            excerpt: ['', [Validators.required, Validators.minLength(30)]],
+            category: ['', Validators.required],
+            postImg: ['', Validators.required],
+            content: ['', Validators.required],
+          });
+        }
+
       });
 
 
