@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { LoginComponent } from './auth/login/login.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage';
     DashboardComponent,
     CategoryComponent,
     AllPostComponent,
-    NewPostComponent
+    NewPostComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

@@ -60,7 +60,7 @@ a {
   color: var(--primary-color);
 }
 
-input[type="text"],input[type="email"]{
+input[type="text"],[type="password"],[type="email"]{
 height: 60px;
 padding-left: 20px;
 width: 100%;
@@ -71,7 +71,7 @@ width: 100%;
   height: 58px;
   border: none;
   padding: 0 30px;
-  font-size: 13px;
+  /* font-size: 13px; */
   width: auto !important;
   background-color: var(--primary-color) !important;
   color: var(--secondary-color) !important;
@@ -87,4 +87,10 @@ width: 100%;
 
 .card{
   border: none !important;
+}
+
+.btn-disable{
+  background-color: lightgray !important;
+  border-color: lightgray !important;
+  cursor: no-drop !important;
 }

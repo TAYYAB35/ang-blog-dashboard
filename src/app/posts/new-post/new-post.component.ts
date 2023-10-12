@@ -105,7 +105,7 @@ export class NewPostComponent implements OnInit {
       postImgUrl: '',
       excerpt: this.postForm.value.excerpt,
       content: this.postForm.value.content,
-      isFeatured: true,
+      isFeatured: false,
       views: 0,
       status: '',
       createdAt: new Date(),
