@@ -15,13 +15,13 @@ import { CategoryComponent } from './category/category.component';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AllPostComponent } from './posts/all-post/all-post.component';
 import { NewPostComponent } from './posts/new-post/new-post.component';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 import { LoginComponent } from './auth/login/login.component';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import { LoginComponent } from './auth/login/login.component';
     FormsModule,
     BrowserModule,
     HttpClientModule,
+    AngularFireAuthModule,
     AngularFireStorageModule,
     AngularEditorModule,
     BrowserAnimationsModule, // required animations module

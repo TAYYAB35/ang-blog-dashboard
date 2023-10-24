@@ -9,7 +9,7 @@
                         <p>Please Login to your Admin Account to post a new blog</p>
                     </div>
 
-                    <form #loginForm = ngForm >
+                    <form #loginForm = ngForm (ngSubmit)="onSubmit(loginForm)" >
                         <div class="form-group ">
                             <input
                             type="email" 
@@ -34,9 +34,9 @@
                                 
                             </div>
                         </div>
-                        <div class="form-group my-4">
-                            <input 
-                            type="password" 
+                        <div class="form-group my-4 password-container">
+                            <input style="padding: 12px !important;"
+                            [type]="showPassword? 'text' : 'password'" 
                             class="form-control" 
                             placeholder="Password" 
                             ngModel 
@@ -44,7 +44,8 @@
                             #Password="ngModel"
                             [ngClass]="{ 'is-invalid' : Password.touched && Password.invalid}"
                             required>
-                            <i class="fa-light fa-eye "></i>
+                            <i (click)="passwordHide()" *ngIf="showP" class="fa-solid fa-eye icon"></i>
+                            <i (click)="passwordShow()"  *ngIf="!showP"  class="fa-solid fa-eye-slash icon"></i>
                             <div class="alert alert-danger" *ngIf="Password.touched && Password.invalid">Password Is Required</div>
                         </div>
                         <button class="btn btn-info btn-block btn-theme w-100" [disabled]="loginForm.invalid" [ngClass]="{'btn-disable' : loginForm.invalid }" >Login</button>
